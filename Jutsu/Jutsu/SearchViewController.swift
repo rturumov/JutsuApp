@@ -169,4 +169,17 @@ extension SearchViewController: UICollectionViewDelegateFlowLayout {
                         insetForSectionAt section: Int) -> UIEdgeInsets {
         UIEdgeInsets(top: 12, left: 8, bottom: 12, right: 8)
     }
+    func collectionView(_ collectionView: UICollectionView,
+                            didSelectItemAt indexPath: IndexPath) {
+
+            let anime = results[indexPath.item]
+
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let detailsVC = storyboard.instantiateViewController(
+                withIdentifier: "AnimeDetailsViewController"
+            ) as! AnimeDetailsViewController
+
+            detailsVC.anime = anime
+            navigationController?.pushViewController(detailsVC, animated: true)
+        }
 }

@@ -111,6 +111,38 @@ final class AnimeAPI {
 
         }.resume()
     }
+    func fetchAnimeDetails(id: Int,
+                           completion: @escaping (Result<Anime, Error>) -> Void) {
+
+        let url = URL(string: "https://api.jikan.moe/v4/anime/\(id)/full")!
+
+        URLSession.shared.dataTask(with: url) { data, _, error in
+
+            if let error = error {
+                DispatchQueue.main.async {
+                    completion(.failure(error))
+                }
+                return
+            }
+
+            guard let data else { return }
+
+            do {
+                let decoded = try JSONDecoder().decode(AnimeDetailsResponse.self, from: data)
+                let anime = decoded.data.toDomain()
+
+                DispatchQueue.main.async {
+                    completion(.success(anime))
+                }
+            } catch {
+                DispatchQueue.main.async {
+                    completion(.failure(error))
+                }
+            }
+
+        }.resume()
+    }
+
 }
 
 

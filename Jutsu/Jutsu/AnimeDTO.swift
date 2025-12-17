@@ -26,11 +26,13 @@ struct JPGImageDTO: Decodable {
 }
 
 extension AnimeDTO {
+    
     func toDomain() -> Anime {
         Anime(
             id: mal_id,
             title: title,
-            posterURL: images.jpg.image_url
+            posterURL: images.jpg.image_url,
+            description: nil,
         )
     }
 }

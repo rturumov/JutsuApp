@@ -62,4 +62,35 @@ final class CategoryRowCell: UITableViewCell {
 
             CGSize(width: 120, height: 180)
         }
+        
+        func collectionView(_ collectionView: UICollectionView,
+                            didSelectItemAt indexPath: IndexPath) {
+
+            let anime = items[indexPath.item]
+
+            guard let viewController = findViewController() else { return }
+
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let detailsVC = storyboard.instantiateViewController(
+                withIdentifier: "AnimeDetailsViewController"
+            ) as! AnimeDetailsViewController
+
+            detailsVC.anime = anime
+            viewController.navigationController?.pushViewController(detailsVC, animated: true)
+        }
+
 }
+
+extension UIView {
+    func findViewController() -> UIViewController? {
+        var responder: UIResponder? = self
+        while responder != nil {
+            if let vc = responder as? UIViewController {
+                return vc
+            }
+            responder = responder?.next
+        }
+        return nil
+    }
+}
+
