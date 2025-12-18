@@ -38,7 +38,7 @@ final class MoviesViewController: UIViewController {
                 self?.buildCategories(from: movies)
 
             case .failure(let error):
-                print("❌ Movies API error:", error)
+                print("Movies API error:", error)
             }
         }
     }

@@ -37,7 +37,7 @@ final class SeriesViewController: UIViewController {
                 self?.buildCategories(from: series)
 
             case .failure(let error):
-                print("❌ Series API error:", error)
+                print("Series API error:", error)
             }
         }
     }
@@ -72,8 +72,6 @@ final class SeriesViewController: UIViewController {
         tableView.reloadData()
     }
 }
-
-// MARK: - UITableViewDataSource & Delegate
 
 extension SeriesViewController: UITableViewDataSource, UITableViewDelegate {
 

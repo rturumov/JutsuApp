@@ -4,6 +4,7 @@
 //
 //  Created by Rasul Turumov on 15.12.2025.
 //
+
 import UIKit
 
 final class FavoritesViewController: UIViewController {
@@ -82,6 +83,7 @@ extension FavoritesViewController: UICollectionViewDelegateFlowLayout {
         UIEdgeInsets(top: 12, left: 16, bottom: 12, right: 16)
     }
 }
+
 extension FavoritesViewController: UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView,

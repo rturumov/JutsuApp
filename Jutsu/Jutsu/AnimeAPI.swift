@@ -39,7 +39,6 @@ final class AnimeAPI {
                     completion(.failure(error))
                 }
             }
-
         }.resume()
     }
     
@@ -70,12 +69,10 @@ final class AnimeAPI {
                     completion(.failure(error))
                 }
             }
-
         }.resume()
     }
 
-    func searchAnime(query: String,
-                     completion: @escaping (Result<[Anime], Error>) -> Void) {
+    func searchAnime(query: String, completion: @escaping (Result<[Anime], Error>) -> Void) {
 
         guard !query.isEmpty else {
             completion(.success([]))
@@ -111,8 +108,8 @@ final class AnimeAPI {
 
         }.resume()
     }
-    func fetchAnimeDetails(id: Int,
-                           completion: @escaping (Result<Anime, Error>) -> Void) {
+    
+    func fetchAnimeDetails(id: Int, completion: @escaping (Result<Anime, Error>) -> Void) {
 
         let url = URL(string: "https://api.jikan.moe/v4/anime/\(id)/full")!
 
@@ -139,10 +136,6 @@ final class AnimeAPI {
                     completion(.failure(error))
                 }
             }
-
         }.resume()
     }
-
 }
-
-

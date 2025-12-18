@@ -52,7 +52,7 @@ final class SearchViewController: UIViewController {
                     self?.collectionView.reloadData()
 
                 case .failure(let error):
-                    print("❌ Search error:", error)
+                    print("Search error:", error)
                 }
             }
         }
@@ -167,7 +167,7 @@ extension SearchViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
-        UIEdgeInsets(top: 12, left: 8, bottom: 12, right: 8)
+        UIEdgeInsets(top: 12, left: 16, bottom: 12, right: 16)
     }
     func collectionView(_ collectionView: UICollectionView,
                             didSelectItemAt indexPath: IndexPath) {

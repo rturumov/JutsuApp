@@ -14,71 +14,70 @@ final class CategoryRowCell: UITableViewCell {
 
     private var items: [Anime] = []
 
-        override func awakeFromNib() {
-            super.awakeFromNib()
-            setupCollection()
-        }
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        setupCollection()
+    }
 
-        private func setupCollection() {
-            collectionView.dataSource = self
-            collectionView.delegate = self
+    private func setupCollection() {
+        collectionView.dataSource = self
+        collectionView.delegate = self
 
-            if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-                layout.scrollDirection = .horizontal
-                layout.minimumLineSpacing = 12
-                layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 16)
-            }
-        }
-
-        func configure(category: AnimeCategoryViewModel) {
-            titleLabel.text = category.title
-            items = category.items
-            collectionView.reloadData()
+        if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            layout.scrollDirection = .horizontal
+            layout.minimumLineSpacing = 12
+            layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 16)
         }
     }
 
-    extension CategoryRowCell: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    func configure(category: AnimeCategoryViewModel) {
+        titleLabel.text = category.title
+        items = category.items
+        collectionView.reloadData()
+    }
+}
 
-        func collectionView(_ collectionView: UICollectionView,
-                            numberOfItemsInSection section: Int) -> Int {
-            items.count
-        }
+extension CategoryRowCell: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
-        func collectionView(_ collectionView: UICollectionView,
-                            cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView,
+                        numberOfItemsInSection section: Int) -> Int {
+        items.count
+    }
 
-            let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: "AnimePosterCell",
-                for: indexPath
-            ) as! AnimePosterCell
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
-            cell.configure(with: items[indexPath.item])
-            return cell
-        }
+        let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: "AnimePosterCell",
+            for: indexPath
+        ) as! AnimePosterCell
 
-        func collectionView(_ collectionView: UICollectionView,
-                            layout collectionViewLayout: UICollectionViewLayout,
-                            sizeForItemAt indexPath: IndexPath) -> CGSize {
+        cell.configure(with: items[indexPath.item])
+        return cell
+    }
 
-            CGSize(width: 120, height: 180)
-        }
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+
+        CGSize(width: 120, height: 180)
+    }
         
-        func collectionView(_ collectionView: UICollectionView,
-                            didSelectItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView,
+                        didSelectItemAt indexPath: IndexPath) {
 
-            let anime = items[indexPath.item]
+        let anime = items[indexPath.item]
 
-            guard let viewController = findViewController() else { return }
+        guard let viewController = findViewController() else { return }
 
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let detailsVC = storyboard.instantiateViewController(
-                withIdentifier: "AnimeDetailsViewController"
-            ) as! AnimeDetailsViewController
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let detailsVC = storyboard.instantiateViewController(
+            withIdentifier: "AnimeDetailsViewController"
+        ) as! AnimeDetailsViewController
 
-            detailsVC.anime = anime
-            viewController.navigationController?.pushViewController(detailsVC, animated: true)
-        }
-
+        detailsVC.anime = anime
+        viewController.navigationController?.pushViewController(detailsVC, animated: true)
+    }
 }
 
 extension UIView {

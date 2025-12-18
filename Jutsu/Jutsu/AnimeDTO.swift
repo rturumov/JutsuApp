@@ -26,7 +26,6 @@ struct JPGImageDTO: Decodable {
 }
 
 extension AnimeDTO {
-    
     func toDomain() -> Anime {
         Anime(
             id: mal_id,

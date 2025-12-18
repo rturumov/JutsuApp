@@ -91,15 +91,15 @@ final class AnimeDetailsViewController: UIViewController {
             }
         }
 
-        private func showComingSoonAlert() {
-            let alert = UIAlertController(
-                title: "Coming soon",
-                message: "This anime does not have a trailer yet.",
-                preferredStyle: .alert
-            )
-            alert.addAction(UIAlertAction(title: "OK", style: .default))
-            present(alert, animated: true)
-        }
+    private func showComingSoonAlert() {
+        let alert = UIAlertController(
+            title: "Coming soon",
+            message: "This anime does not have a trailer yet.",
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alert, animated: true)
+    }
     
     private func updateLikeButton() {
         let isLiked = FavoritesManager.shared.isFavorite(anime)
@@ -107,5 +107,4 @@ final class AnimeDetailsViewController: UIViewController {
         likeButton.setImage(UIImage(systemName: imageName), for: .normal)
         likeButton.tintColor = .systemBlue
     }
-
 }
